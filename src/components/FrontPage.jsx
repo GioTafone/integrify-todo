@@ -1,15 +1,21 @@
 import React, {useState} from 'react'
 import Button from './Button'
-import ToDoItem from './ToDoItem'
+import DataList from './DataList'
+import Form from './Form'
 
 const FrontPage = () => {
-    const [addTodo, setAddTodo] = useState(false)
+    const [showTodos, setShowTodos] = useState(false)
+    const [todos, setTodos] = useState([])
+
+    const addTodos = (todoList) => {
+        setTodos([...todos, todoList])
+    }
+    console.log(todos)
 
     const handleClick = () => {
-        setAddTodo(prevState => !prevState)
+        setShowTodos(prevState => !prevState)
     }
 
-    console.log(addTodo)
 
   return (
     <div>
@@ -18,9 +24,12 @@ const FrontPage = () => {
             <Button handleClick={handleClick}/>
         </div>
         <div>
-            {addTodo ? 
-            <ToDoItem />
+            {showTodos ? 
+            <Form addTodos={addTodos}/>
             : null}
+        </div>
+        <div>
+            <DataList datas={todos}/>
         </div>
     </div>
   )

@@ -1,15 +1,13 @@
 import React, {useState, useEffect} from 'react'
 
-const ToDoItem = () => {
+const ToDoItem = ({ addTodos }) => {
     const [formData, setFormData] = useState({
-        title: '',
-        deadline: '',
-        status:'Done'
-    })
-
-    useEffect(() => {
-            localStorage.setItem('formData', JSON.stringify(formData))
-    })
+            id: Math.floor(Math.random() * 25000),
+            title: '',
+            deadline: '',
+            status:''
+        }
+    )
 
     const handleChange = (event) => {
         setFormData(prevFormData => {
@@ -23,8 +21,16 @@ const ToDoItem = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-            console.log(formData)
+        addTodos(formData)
+        console.log(formData)
+        setFormData({
+                id: Math.floor(Math.random() * 25000),
+                title:'',
+                deadline: '',
+                status: ''
+            })
     }
+
 
   return (
     <div>
@@ -65,3 +71,24 @@ const ToDoItem = () => {
 }
 
 export default ToDoItem
+
+    // const [addData, setAddData] = useState([])
+
+    // let arrayData = []
+
+    // const handleAddData = (event) => {
+    //     setAddData(prevAddData => ({
+    //         ...prevAddData,
+    //         [event.target.name]: event.target.value
+    //     }))
+    // }
+
+    // console.log(addData)
+    // useEffect(() => {
+    //         localStorage.setItem('formData', JSON.stringify(formData))
+    // })
+
+                // id: Math.floor(Math.random() * 25000),
+                // title: formData.title,
+                // deadline: formData.deadline,
+                // status: formData.status
