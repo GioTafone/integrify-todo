@@ -10,18 +10,16 @@ const FrontPage = () => {
     const addTodos = (todoList) => {
         setTodos([...todos, todoList])
     }
-    console.log(todos)
 
     const handleClick = () => {
         setShowTodos(prevState => !prevState)
     }
 
-
   return (
     <div>
-        <h1 className='mb-5 text-center w-full border'>Front Page</h1>
-        <div>
-            <Button handleClick={handleClick}/>
+        <h1 className='lg:mb-5 w-full border'>Front Page</h1>
+        <div className='w-full lg:my-5 border'>
+            <Button handleClick={handleClick} text={showTodos ? 'Cancel' : 'Add new To Do'}/>
         </div>
         <div>
             {showTodos ? 

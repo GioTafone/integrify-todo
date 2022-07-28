@@ -22,7 +22,6 @@ const ToDoItem = ({ addTodos }) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         addTodos(formData)
-        console.log(formData)
         setFormData({
                 id: Math.floor(Math.random() * 25000),
                 title:'',
@@ -34,61 +33,42 @@ const ToDoItem = ({ addTodos }) => {
 
   return (
     <div>
-        <form onSubmit={handleSubmit} className='flex flex-col'>
+        <form onSubmit={handleSubmit}>
             <input 
                 type='text'
                 placeholder='Title'
                 onChange={handleChange}
                 name='title'
                 value={formData.title}
-                className='border'
+                className='border lg:w-4/12 lg:mt-8'
             />
+            <br />
             <input 
                 type='text'
                 placeholder='Deadline'
                 onChange={handleChange}
                 name='deadline'
                 value={formData.deadline}
-                className='border'
+                className='border lg:w-4/12'
             />
-            <label htmlFor='status'>Please select Status</label>
             <br />
+            <label htmlFor='status'>Please select Status</label>
             <select
                 id='status'
                 value={formData.status}
                 onChange={handleChange}
                 name='status'
+                className='border lg:w-4/12'
             >
-                <option value='done'>Done</option>
-                <option value='inProgress'>In Progress</option>
-                <option value='notStarted'>Not Started</option>
+                <option value='Done'>Done</option>
+                <option value='In Progress'>In Progress</option>
+                <option value='Not Started'>Not Started</option>
             </select>
             <br />
-            <button>Submit</button>
+            <button className='bg-indigo-500 rounded-xl px-4 py-3 mb-4 font-semibold transition duration-700 transform hover:-translate-y-1 text-white hover:bg-indigo-700'>Add</button>
         </form>
     </div>
   )
 }
 
 export default ToDoItem
-
-    // const [addData, setAddData] = useState([])
-
-    // let arrayData = []
-
-    // const handleAddData = (event) => {
-    //     setAddData(prevAddData => ({
-    //         ...prevAddData,
-    //         [event.target.name]: event.target.value
-    //     }))
-    // }
-
-    // console.log(addData)
-    // useEffect(() => {
-    //         localStorage.setItem('formData', JSON.stringify(formData))
-    // })
-
-                // id: Math.floor(Math.random() * 25000),
-                // title: formData.title,
-                // deadline: formData.deadline,
-                // status: formData.status
